@@ -1,75 +1,24 @@
+/* Общие стили для всех экранов */
+
+/* Задаем шрифт и цвет фона */
 * {
-  padding: 0;
-  margin: 0;
-  font-family: 'Itim', cursive;
-}
-
-.title {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.display {
-  text-align: center;
-  font-size: 24px;
-}
-
-.display-player {
-  font-weight: bold;
-}
-
-.playerX {
-  color: #ff0000;
-}
-
-.playerO {
-  color: #0000ff;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(3, 33%);
-  grid-template-rows: repeat(3, 33%);
-  width: 300px;
-  height: 300px;
-  margin: auto;
-}
-
-.tile {
-  border: solid black 1px;
-  font-size: 48px;
-  text-align: center;
-}
-
-.announcer {
-  text-align: center;
-  font-size: 32px;
-}
-
-.hide {
-  display: none;
-}
-
-.controls {
-  text-align: center;
-}
-
-/* Изменил цвет фона на светло-серый */
-.background {
+  font-family: "Noto Sans JP", sans-serif;
   background-color: #f0f0f0;
 }
 
-/* Изменил цвет заголовка на темно-серый */
+/* Центрируем заголовок и делаем его темно-серым */
 .title h1 {
   color: #333333;
+  text-align: center;
 }
 
-/* Изменил цвет текста на черный */
+/* Центрируем сообщение о ходе и делаем его черным */
 .display {
   color: #000000;
+  text-align: center;
 }
 
-/* Изменил цвет символов игроков на коричневый и зеленый */
+/* Задаем цвет символов игроков */
 .playerX {
   color: #8b4513;
 }
@@ -78,17 +27,71 @@
   color: #006400;
 }
 
-/* Изменил цвет границ ячеек на бежевый */
+/* Задаем цвет границ ячеек и добавляем тень при наведении */
 .tile {
   border-color: #f5f5dc;
 }
 
-/* Добавил тень к ячейкам для создания эффекта объема */
 .tile:hover {
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Добавил шрифт Noto Sans JP для текста */
-* {
-  font-family: 'Noto Sans JP', sans-serif;
+/* Центрируем сообщение о результате игры */
+.announcer {
+  text-align: center;
+}
+
+/* Центрируем кнопку сброса игры */
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+/* Медиа-запрос для экранов шириной до 600px */
+
+@media (max-width: 600px) {
+  /* Делаем заголовок меньше */
+  .title h1 {
+    font-size: 4vw;
+  }
+
+  /* Делаем сообщение о ходе меньше */
+  .display {
+    font-size: 3vw;
+  }
+
+  /* Делаем контейнер с ячейками гибким и выравниваем его по центру */
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: auto; /* Убираем фиксированную ширину */
+    height: auto; /* Убираем фиксированную высоту */
+    margin-top: 10px; /* Добавляем отступ сверху */
+    margin-bottom: 10px; /* Добавляем отступ снизу */
+    border: none; /* Убираем рамку */
+    box-shadow: none; /* Убираем тень */
+  }
+
+   /* Делаем ячейки квадратными и задаем им относительную ширину и высоту */
+   .tile {
+     width: calc(100vw / 3 - 20px); /* Вычитаем отступы по бокам */
+     height: calc(100vw / 3 - 20px); /* Вычитаем отступы по бокам */
+     font-size: calc(100vw / 9); /* Масштабируем размер шрифта */
+   }
+
+   /* Делаем сообщение о результате игры больше и добавляем отступы по бокам */
+   .announcer {
+     font-size: calc(100vw / 15);
+     padding-left: 10px;
+     padding-right: 10px;
+   }
+
+   /* Делаем кнопку сброса игры больше и добавляем отступы по бокам */
+   #reset {
+     font-size: calc(100vw / 15);
+     padding-left: 10px;
+     padding-right: 10px;
+   }
 }
