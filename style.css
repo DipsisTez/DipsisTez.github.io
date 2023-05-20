@@ -1,0 +1,55 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Itim', cursive;
+}
+
+.title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.display {
+  text-align: center;
+  font-size: 24px;
+}
+
+.display-player {
+  font-weight: bold;
+}
+
+.playerX {
+  color: #ff0000;
+}
+
+.playerO {
+  color: #0000ff;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  grid-template-rows: repeat(3, 33%);
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}
+
+.tile {
+  border: solid black 1px;
+  font-size: 48px;
+  text-align: center;
+}
+
+.announcer {
+  text-align: center;
+  font-size: 32px;
+}
+
+.hide {
+  display: none;
+}
+
+.controls {
+  text-align: center;
+}
