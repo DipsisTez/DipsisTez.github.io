@@ -11,6 +11,7 @@ let isGameActive = true; // Флаг активности игры
 let winningMessage = `Игрок ${currentPlayer} выиграл!`; // Сообщение о победе
 let drawMessage = "Ничья!"; // Сообщение о ничьей
 let turnMessage = `Ход игрока ${currentPlayer}`; // Сообщение о ходе
+let computerPlayer; // Символ бота
 
 // Возможные выигрышные комбинации
 const winningConditions = [
@@ -90,6 +91,56 @@ function changePlayer() {
     displayPlayer.classList.remove("playerX");
     displayPlayer.classList.add("playerO");
    }
+
+   // Если текущий игрок совпадает с ботом, то вызываем функцию getComputerMove
+   if (currentPlayer === computerPlayer) {
+     let computerMove = getComputerMove();
+     tiles[computerMove].click();
+   }
+}
+
+// Функция для получения хода компьютера
+function getComputerMove() {
+  // Проверяем, может ли компьютер выиграть на следующем ходу
+  for (let i = 0; i < board.length; i++) {
+    // Если ячейка пустая, то делаем там ход
+    if (board[i] === "") {
+      board[i] = computerPlayer;
+      // Если этот ход приводит к победе, то возвращаем его
+      if (getResult(board) === computerPlayer) {
+        return i;
+      }
+      // Иначе возвращаем ячейку в исходное состояние
+      board[i] = "";
+    }
+  }
+
+  // Проверяем, может ли человек выиграть на следующем ходу
+  for (let i = 0; i < board.length; i++) {
+    // Если ячейка пустая, то делаем там ход
+    if (board[i] === "") {
+      board[i] = currentPlayer;
+      // Если этот ход приводит к победе человека, то блокируем его
+      if (getResult(board) === currentPlayer) {
+        board[i] = computerPlayer;
+        return i;
+      }
+      // Иначе возвращаем ячейку в исходное состояние
+      board[i] = "";
+    }
+  }
+
+   // Если нет возможности выиграть или проиграть на следующем ходу, то выбираем случайную свободную ячейку
+   let emptyCells = [];
+   for (let i = 0; i < board.length; i++) {
+     if (board[i] === "") {
+       emptyCells.push(i);
+     }
+   }
+   let randomIndex = Math.floor(Math.random() * emptyCells.length);
+   let randomCell = emptyCells[randomIndex];
+   board[randomCell] = computerPlayer;
+   return randomCell;
 }
 
 // Функция для сброса игры
@@ -111,6 +162,16 @@ function resetGame() {
    
    displayPlayer.classList.remove("playerO");
    displayPlayer.classList.add("playerX");
+
+   // Случайным образом выбираем символ бота ("O" или "X")
+   let randomSymbolIndex = Math.floor(Math.random() * ["O", "X"].length);
+   computerPlayer= ["O", "X"][randomSymbolIndex];
+
+   // Если бот первый ходит, то запускаем его ход 
+   if (computerPlayer === "X") {
+     let computerMove= getComputerMove();
+     tiles[computerMove].click();
+   }
 }
 
 // Добавляем обработчики событий на все ячейки и кнопку сброса
