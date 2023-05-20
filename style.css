@@ -53,3 +53,42 @@
 .controls {
   text-align: center;
 }
+
+/* Изменил цвет фона на светло-серый */
+.background {
+  background-color: #f0f0f0;
+}
+
+/* Изменил цвет заголовка на темно-серый */
+.title h1 {
+  color: #333333;
+}
+
+/* Изменил цвет текста на черный */
+.display {
+  color: #000000;
+}
+
+/* Изменил цвет символов игроков на коричневый и зеленый */
+.playerX {
+  color: #8b4513;
+}
+
+.playerO {
+  color: #006400;
+}
+
+/* Изменил цвет границ ячеек на бежевый */
+.tile {
+  border-color: #f5f5dc;
+}
+
+/* Добавил тень к ячейкам для создания эффекта объема */
+.tile:hover {
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Добавил шрифт Noto Sans JP для текста */
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+}
